@@ -4,7 +4,7 @@ let eta = prompt("Inserisci la tua età")
 let prezzoBase = km * 0.21
 let sconto = 0;
 let prezzoScontato;
-let prezzFinale; 
+let prezzFinale = prezzoBase
 
 
 if (eta < 18) {
