@@ -1,20 +1,23 @@
-let km = prompt("Inserisci i km da percorrere")
-let eta = prompt("Inserisci la tua età")
+document
+  .getElementById("ticketForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
 
-let prezzoBase = km * 0.21
-let sconto = 0;
-let prezzoScontato;
-let prezzFinale = prezzoBase
+    let km = parseFloat(document.getElementById("km").value);
+    let eta = parseInt(document.getElementById("eta").value);
 
+    let prezzoBase = 0.21 * km;
+    let sconto = 0;
 
-if (eta < 18) {
-    let sconto = prezzoBase * 0.2;
-    prezzoFinale = prezzoBase - sconto
-}
+    if (eta < 18) {
+      sconto = 0.2;
+    } else if (eta > 65) {
+      sconto = 0.4;
+    }
 
-else if(eta > 65) {
-   let sconto = prezzoBase * 0.4;
-    prezzoFinale = prezzoBase - sconto;
-}
+    let prezzoFinale = prezzoBase * (1 - sconto);
 
-console.log(prezzoFinale)
+    document.getElementById(
+      "result"
+    ).innerText = `Il prezzo del biglietto è: ${prezzoFinale.toFixed(2)} €`;
+  });
